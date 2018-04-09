@@ -1,17 +1,17 @@
-import gulp     from 'gulp';
-import plugins  from 'gulp-load-plugins';
-import browser  from 'browser-sync';
-import rimraf   from 'rimraf';
-import panini   from 'panini';
-import yargs    from 'yargs';
+import gulp from 'gulp';
+import plugins from 'gulp-load-plugins';
+import browser from 'browser-sync';
+import rimraf from 'rimraf';
+import panini from 'panini';
+import yargs from 'yargs';
 import lazypipe from 'lazypipe';
-import inky     from 'inky';
-import fs       from 'fs';
-import siphon   from 'siphon-media-query';
-import path     from 'path';
-import merge    from 'merge-stream';
-import beep     from 'beepbeep';
-import colors   from 'colors';
+import inky from 'inky';
+import fs from 'fs';
+import siphon from 'siphon-media-query';
+import path from 'path';
+import merge from 'merge-stream';
+import beep from 'beepbeep';
+import mysql    from 'mysql';
 
 const $ = plugins();
 
@@ -19,16 +19,20 @@ const $ = plugins();
 const PRODUCTION = !!(yargs.argv.production);
 const EMAIL = yargs.argv.to;
 
-// Declar var so that both AWS and Litmus task can use it.
+// Declare var so that both AWS and Litmus task can use it.
 var CONFIG;
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
   gulp.series(clean, pages, sass, images, inline));
 
+// Generate data file from database
+gulp.task('get-events',
+  gulp.series(creds, getEvents));
+
 // Build emails, run the server, and watch for file changes
 gulp.task('default',
-  gulp.series('build', server, watch));
+  gulp.series('get-events', 'build', server, watch));
 
 // Build emails, then send to litmus
 gulp.task('litmus',
@@ -41,6 +45,7 @@ gulp.task('mail',
 // Build emails, then zip
 gulp.task('zip',
   gulp.series('build', zip));
+
 
 // Delete the "dist" folder
 // This happens every time a build starts
@@ -56,7 +61,8 @@ function pages() {
       root: 'src/pages',
       layouts: 'src/layouts',
       partials: 'src/partials',
-      helpers: 'src/helpers'
+      helpers: 'src/helpers',
+      data: 'src/data'
     }))
     .pipe(inky())
     .pipe(gulp.dest('dist'));
@@ -230,3 +236,19 @@ function zip() {
 
   return merge(moveTasks);
 }
+
+
+function getEvents(done) {
+  var db = mysql.createConnection(CONFIG.mysql.credentials);
+
+  db.query(CONFIG.mysql.query, function (error, result) {
+    if (error) throw error;
+
+    fs.writeFile('src/data/events.json', JSON.stringify(result, null, 2), (error) => {
+      if (error) throw error;
+    });
+  });
+
+  done();
+}
+
