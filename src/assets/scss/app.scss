@@ -1,4 +1,75 @@
 @import 'settings';
 @import 'foundation-emails';
 
-@import 'template/template';
+a {
+	color: $primary-color;
+}
+
+h1 {
+	color: #615856;
+	margin: 0px 0px 6px;
+	padding: 0px 0px 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #776656;
+	line-height: 1.2;
+}
+
+h2, p {
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+.spacer.divider {
+	border-bottom: 2px solid #eeeeee;
+}
+
+@media only screen and (min-width: $global-breakpoint + 1px) {
+	table.button.align-right {
+		display: inline;
+		float: right;
+	}
+}
+
+.event-info {
+	p {
+		color: #202020;
+	}
+	.program, .konzertinfo {
+		color: $primary-color;
+		font-family: $header-font-family;
+		font-size: 15px;
+		margin-bottom: 0;
+	}
+	img {
+		margin-bottom: $global-padding;
+	}
+}
+
+.event-date {
+	.columns {
+		table {
+			background-color: #eeeeee;			
+		}
+	}
+
+	p {
+		margin-bottom: 0;
+		line-height: 1.8;
+		font-size: 16px;
+		color: #605856;
+		font-family: Georgia, Times, 'Times New Roman', serif;
+	}
+}
+
+img.social {
+	display: inline;
+}
+@media only screen and (max-width: $global-breakpoint) {
+	table.body img.social {
+		width: 36px;
+		height: 36px;
+	}
+}
