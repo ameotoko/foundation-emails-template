@@ -1,0 +1,47 @@
+{{#each events}}
+
+<!-- Begin event -->
+<spacer size="24"></spacer>
+
+<row class="event-title">
+	<columns small="12">
+		<a href="https://blackmores-musikzimmer.de/programm/konzerte/klassik/{{id}}-{{alias}}">
+			<h2>{{{title}}}</h2>
+		</a>
+	</columns>
+</row>
+
+<row>
+	<columns small="12" class="event-date">
+		<row>
+			<columns small="9">
+				<p class="text-left">&nbsp;{{date}}</p>
+			</columns>
+			<columns small="3" class="event-date">
+				<p class="text-right">{{formatPrice price}} €&nbsp;</p>
+			</columns>
+		</row>
+	</columns>
+</row>
+
+<spacer size="16"></spacer>
+
+<row class="event-info">
+	<columns small="12" large="6">
+		<img width="265" src="https://blackmores-musikzimmer.de/media/com_eventbooking/images/{{formatThumb thumb}}" alt="{{title}}">
+	</columns>
+	<columns small="12" large="6">
+		{{{short_description}}}
+	</columns>
+</row>
+
+<spacer size="5"></spacer>
+<row>
+	<columns small="12">
+		<button href="http://blackmores-musikzimmer.de/programm/konzerte/klassik/{{id}}-{{alias}}" class="small radius primary small-expanded align-right">Mehr...</button>
+		<spacer size="1" class="divider"></spacer>
+</row>
+<spacer size="5"></spacer>
+<!-- End event -->
+
+{{/each}}
