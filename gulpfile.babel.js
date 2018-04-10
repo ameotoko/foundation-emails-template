@@ -26,13 +26,13 @@ var CONFIG;
 gulp.task('build',
   gulp.series(clean, pages, sass, images, inline));
 
-// Generate data file from database
+// Generate data file from database (you have to run this separately, because you can edit the json file manually)
 gulp.task('get-events',
   gulp.series(creds, getEvents));
 
 // Build emails, run the server, and watch for file changes
 gulp.task('default',
-  gulp.series('get-events', 'build', server, watch));
+  gulp.series('build', server, watch));
 
 // Build emails, then send to litmus
 gulp.task('litmus',
@@ -114,7 +114,7 @@ function server(done) {
 // Watch for file changes
 function watch() {
   gulp.watch('src/pages/**/*.html').on('all', gulp.series(pages, inline, browser.reload));
-  gulp.watch(['src/layouts/**/*', 'src/partials/**/*']).on('all', gulp.series(resetPages, pages, inline, browser.reload));
+  gulp.watch(['src/layouts/**/*', 'src/partials/**/*', 'src/data/*']).on('all', gulp.series(resetPages, pages, inline, browser.reload));
   gulp.watch(['../scss/**/*.scss', 'src/assets/scss/**/*.scss']).on('all', gulp.series(resetPages, sass, pages, inline, browser.reload));
   gulp.watch('src/assets/img/**/*').on('all', gulp.series(images, browser.reload));
 }
@@ -244,10 +244,12 @@ function getEvents(done) {
   db.query(CONFIG.mysql.query, function (error, result) {
     if (error) throw error;
 
-    fs.writeFile('src/data/events.json', JSON.stringify(result, null, 2), (error) => {
+    fs.writeFile('./src/data/events.json', JSON.stringify(result[1], null, 2), (error) => {
       if (error) throw error;
     });
   });
+
+  db.end();
 
   done();
 }

@@ -1,56 +1,63 @@
 ---
 layout: index-layout
-subject: My Email Templates
+subject: BLACKMORE'S – Programm April 2018
 ---
 
 <spacer size="16"></spacer>
 
+<center>
+	<small>
+		<a href="*|ARCHIVE|*" style="color: #cacaca; text-decoration: underline;">View this email in your browser</a>
+	</small>
+</center>
+
+<spacer size="16"></spacer>
+
 <container>
+	<spacer size="16"></spacer>
 
-  <spacer size="24"></spacer>
-  
-  <row>
-    <columns small="12">
+	<a href="https://blackmores-musikzimmer.de">
+		<center>
+			<img width="540" src="https://gallery.mailchimp.com/e69615b57b64ea8a8dd340fa4/images/f141f477-1206-4cef-8858-937ced9e8480.png" alt="BLACKMORE'S – Berlins Musikzimmer">
+			<img width="540" src="https://gallery.mailchimp.com/e69615b57b64ea8a8dd340fa4/images/c38f7882-b40d-4910-90f5-a11ba7ad5a48.png" alt="Warmbrunner Str. 52, 14193 Berlin-Wilmersdorf">
+		</center>
+	</a>
 
-    <p class="lead">Hi there!</p>
-    <p style="color: #484848; line-height: 1.5;">Thanks for downloading <a href="http://foundation.zurb.com/emails/docs/">Foundation for Emails!</a> Your days of coding up painful HTML emails are officially over. You’ll soon be cranking out some slick, responsive emails in no time! To help get you up and running, we've put together 11 templates for the most common email use cases including newsletters, transactional emails, and marketing blasts. Feel free to customize them to your hearts content.</p>
+	<spacer size="24"></spacer>
 
-    <spacer size="16"></spacer>
-    {{#each events}}
-      {{id}}: {{title}}<br>
-    {{/each}}
-    <center>
-      <menu class="vertical">
-        <item href="{{root}}basic.html" target="_blank">Basic Template</item>
-        <item href="{{root}}drip.html" target="_blank">Drip Template</item>
-        <item href="{{root}}hero.html" target="_blank">Hero Template</item>
-        <item href="{{root}}marketing.html" target="_blank">Marketing Template</item>
-        <item href="{{root}}newsletter.html" target="_blank">Newsletter Template</item>
-        <item href="{{root}}newsletter-2.html" target="_blank">Newsletter 2 Template</item>
-        <item href="{{root}}order.html" target="_blank">Order Template</item>
-        <item href="{{root}}password.html" target="_blank">Password Template</item>
-        <item href="{{root}}sidebar.html" target="_blank">Sidebar Template</item>
-        <item href="{{root}}sidebar-hero.html" target="_blank">Sidebar Hero Template</item>
-        <item href="{{root}}welcome.html" target="_blank">Welcome Template</item>
-      </menu>
-    </center>
+	<row>
+		<columns>
+			<h1>BLACKMORE'S – Programm April 2018</h1>
+		</columns>
+	</row>
 
-    <spacer size="16"></spacer>
+	{{> events}}
 
-    <p>Happy Coding,</p>
-    <p>The Foundation Team</p>
-
-
-    <spacer size="16"></spacer>
-
-    </columns>
-  </row>
+	<row>
+		<columns small="12">
+			<img width="548" src="https://gallery.mailchimp.com/e69615b57b64ea8a8dd340fa4/images/a16a9ad7-7df8-4eb4-a93b-33067c1b1fcd.png" alt="Bei Ticketino, Eventim oder Ticketmaster kaufen">
+		</columns>
+	</row>
 </container>
 
 <spacer size="16"></spacer>
 
 <center>
-  <small>Keep on keepin' on. &lt;3 <a style="color: #cacaca; text-decoration: underline;" href="http://zurb.com/">ZURB</a> </small>
+	<a href="https://www.facebook.com/blackmoresmusikfabrik"><img class="social" width="36" height="36" src="https://cdn-images.mailchimp.com/icons/social-block-v2/gray-facebook-96.png" alt="Facebook"></a>&nbsp;&nbsp;
+	<a href="http://twitter.com/blackmores_m"><img class="social" width="36" height="36" src="https://cdn-images.mailchimp.com/icons/social-block-v2/gray-twitter-96.png" alt="Twitter"></a>&nbsp;&nbsp;
+	<a href="https://instagram.com/musikzimmer/"><img class="social" width="36" height="36" src="https://cdn-images.mailchimp.com/icons/social-block-v2/gray-instagram-96.png" alt="Instagram"></a>
+</center>
+
+<spacer size="10"></spacer>
+
+<center>
+	<small>
+		Copyright &copy; *|CURRENT_YEAR|* *|LIST:COMPANY|*, All rights reserved.<br>&nbsp;<br>
+		<strong>Unsere Adresse:</strong><br>
+		*|HTML:LIST_ADDRESS_HTML|*
+		<br>&nbsp;<br>
+		<a href="*|UPDATE_PROFILE|*" style="color: #cacaca; text-decoration: underline;">Ihre Daten aktualisieren</a> oder <a href="*|UNSUB|*" style="color: #cacaca; text-decoration: underline;">Newsletter abbestellen</a>
+	</small>
 </center>
 
 <spacer size="16"></spacer>
