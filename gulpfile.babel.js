@@ -81,10 +81,11 @@ function sass() {
     .pipe($.sass({
       includePaths: ['node_modules/foundation-emails/scss']
     }).on('error', $.sass.logError))
-    .pipe($.if(PRODUCTION, $.uncss(
-      {
-        html: ['dist/**/*.html']
-      })))
+    //    DEPRECATED. See https://github.com/ben-eb/gulp-uncss#deprecation-notice
+    // .pipe($.if(PRODUCTION, $.uncss(
+    //   {
+    //     html: ['dist/**/*.html']
+    //   })))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
     .pipe(gulp.dest('dist/css'));
 }
